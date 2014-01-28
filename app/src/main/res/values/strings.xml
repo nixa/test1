@@ -4,5 +4,9 @@
     <string name="app_name">TestCI</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="enter_email">Enter e-mail</string>
+    <string name="enter_password">Enter password</string>
+    <string name="login">Login</string>
 
 </resources>

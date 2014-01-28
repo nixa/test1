@@ -3,6 +3,7 @@ package co.infinum.testci;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -11,23 +12,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.EditText;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import hugo.weaving.DebugLog;
 
-public class MainActivity extends Activity {
+public class LoginActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
+            getFragmentManager().beginTransaction().add(R.id.container, new PlaceholderFragment()).commit();
         }
     }
 
@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
 
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.login, menu);
         return true;
     }
 
@@ -57,22 +57,27 @@ public class MainActivity extends Activity {
      */
     public static class PlaceholderFragment extends Fragment {
 
+        @InjectView(R.id.buttonLogin)      Button   buttonLogin;
+        @InjectView(R.id.editTextEmail)    EditText editTextEmail;
+        @InjectView(R.id.editTextPassword) EditText editTextPassword;
+
         public PlaceholderFragment() {
         }
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_login, container, false);
 
             ButterKnife.inject(this, rootView);
 
             return rootView;
         }
 
-        @OnClick({R.id.buttonSend, R.id.buttonMail})
-        public void sendMessage(Button btn) {
-            Toast.makeText(getActivity(), btn.getText(), Toast.LENGTH_LONG).show();
+        @OnClick(R.id.buttonLogin)
+        public void onLogin(Button btn) {
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            startActivity(intent);
+            getActivity().finish();
         }
     }
 
