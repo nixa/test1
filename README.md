@@ -1,4 +1,4 @@
 test1
 =====
 
-![Travis CI](https://travis-ci.org/nixa/test1.png "Travis CI")
+![Travis CI](https://travis-ci.org/nixa/test1.png)
