@@ -1,4 +1,4 @@
 test1
 =====
 
-* image:https://travis-ci.org/nixa/test1.png["Build Status", link="https://travis-ci.org/nixa/test1"]
+![Travis CI](https://travis-ci.org/nixa/test1.png "Travis CI")
