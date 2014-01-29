@@ -72,6 +72,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="hugo-annotations-1.0.1" level="project" />
     <orderEntry type="library" exported="" name="butterknife-4.0.1" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="espresso-contrib-1.1-bundled" level="project" />
     <orderEntry type="library" exported="" name="ComJakewhartonHugoHugoRuntime101.aar" level="project" />
     <orderEntry type="library" exported="" name="aspectjrt-1.7.4" level="project" />
   </component>
