@@ -39,8 +39,3 @@ dependencies {
     compile 'com.jakewharton:butterknife:4.0.1'
     instrumentTestCompile files('libs/espresso-contrib-1.1-bundled.jar')
 }
-
-test {
-    // show standard out and standard error of the test JVM(s) on the console
-    testLogging.showStandardStreams = true
-}
