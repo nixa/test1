@@ -26,8 +26,12 @@ android {
     }
 
     buildTypes {
+        debug {
+               packageNameSuffix '.dev'
+        }
+
         release {
-            runProguard false
+            runProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
@@ -38,11 +42,14 @@ android {
 
     packagingOptions {
         exclude 'LICENSE.txt'
+        exclude 'NOTICE'
     }
 }
 
 dependencies {
     compile 'com.jakewharton:butterknife:4.0.1'
+
+    instrumentTestCompile 'com.squareup:fest-android:1.0.7'
 
     instrumentTestCompile 'com.squareup.spoon:spoon-client:1.1.0'
 

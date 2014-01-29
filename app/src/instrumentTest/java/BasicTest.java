@@ -1,7 +1,6 @@
 import com.squareup.spoon.Spoon;
 
 import android.app.Instrumentation;
-import android.app.UiAutomation;
 import android.content.IntentFilter;
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.LargeTest;
@@ -9,12 +8,10 @@ import android.test.suitebuilder.annotation.LargeTest;
 import co.infinum.testci.LoginActivity;
 import co.infinum.testci.R;
 
-import static com.google.android.apps.common.testing.ui.espresso.Espresso.onData;
 import static com.google.android.apps.common.testing.ui.espresso.Espresso.onView;
 import static com.google.android.apps.common.testing.ui.espresso.action.ViewActions.click;
 import static com.google.android.apps.common.testing.ui.espresso.action.ViewActions.typeText;
 import static com.google.android.apps.common.testing.ui.espresso.assertion.ViewAssertions.matches;
-import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.assertThat;
 import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.withId;
 import static com.google.android.apps.common.testing.ui.espresso.matcher.ViewMatchers.withText;
 
@@ -34,11 +31,15 @@ public class BasicTest extends ActivityInstrumentationTestCase2<LoginActivity> {
     @Override
     protected void setUp() throws Exception {
         super.setUp();
+
         activity = getActivity();
         instrumentation = getInstrumentation();
     }
 
     public void testSimpleClick() {
+
+        IntentFilter filter = new IntentFilter();
+        Instrumentation.ActivityMonitor monitor = instrumentation.addMonitor(filter, null, false);
 
         Spoon.screenshot(getActivity(), "initial_state");
 
@@ -47,17 +48,13 @@ public class BasicTest extends ActivityInstrumentationTestCase2<LoginActivity> {
         assertNotNull(withId(R.id.buttonSend));
         assertNotNull(withId(R.id.buttonMail));
 
-        instrumentation.waitForIdleSync();
-
-        Spoon.screenshot(getActivity(), "middle_state");
+        Spoon.screenshot(monitor.getLastActivity(), "middle_state");
 
         onView(withId(R.id.buttonSend)).perform(click());
 
         assertNotNull(matches(withText("NIXA JE COOL")));
 
-        instrumentation.waitForIdleSync();
-
-        Spoon.screenshot(getActivity(), "end_state");
+        Spoon.screenshot(monitor.getLastActivity(), "end_state");
 
     }
 
