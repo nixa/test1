@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import butterknife.ButterKnife;
@@ -57,6 +58,8 @@ public class MainActivity extends Activity {
      */
     public static class PlaceholderFragment extends Fragment {
 
+        @InjectView(R.id.textView) TextView textViewUser;
+
         public PlaceholderFragment() {
         }
 
@@ -70,9 +73,18 @@ public class MainActivity extends Activity {
             return rootView;
         }
 
+        @Override
+        public void onActivityCreated(Bundle savedInstanceState) {
+            super.onActivityCreated(savedInstanceState);
+
+            if (getActivity().getIntent() != null) {
+                textViewUser.setText(getActivity().getIntent().getStringExtra("email"));
+            }
+        }
+
         @OnClick({R.id.buttonSend, R.id.buttonMail})
         public void sendMessage(Button btn) {
-            Toast.makeText(getActivity(), btn.getText(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "NIXA JE COOL", Toast.LENGTH_LONG).show();
         }
     }
 

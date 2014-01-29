@@ -1,7 +1,6 @@
 package co.infinum.testci;
 
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,14 +9,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
 import android.widget.Button;
 import android.widget.EditText;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import hugo.weaving.DebugLog;
 
 public class LoginActivity extends Activity {
 
@@ -76,6 +73,7 @@ public class LoginActivity extends Activity {
         @OnClick(R.id.buttonLogin)
         public void onLogin(Button btn) {
             Intent intent = new Intent(getActivity(), MainActivity.class);
+            intent.putExtra("email", editTextEmail.getText().toString());
             startActivity(intent);
             getActivity().finish();
         }

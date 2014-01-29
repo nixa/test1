@@ -4,11 +4,13 @@ buildscript {
     }
     dependencies {
         classpath 'com.jakewharton.hugo:hugo-plugin:1.0.1'
+        classpath 'com.stanfy.spoon:spoon-gradle-plugin:0.9.+'
     }
 }
 
 apply plugin: 'android'
 apply plugin: 'hugo'
+apply plugin: 'spoon'
 
 android {
     compileSdkVersion 19
@@ -33,9 +35,24 @@ android {
     lintOptions {
         abortOnError false
     }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+    }
 }
 
 dependencies {
     compile 'com.jakewharton:butterknife:4.0.1'
-    instrumentTestCompile files('libs/espresso-contrib-1.1-bundled.jar')
+
+    instrumentTestCompile 'com.squareup.spoon:spoon-client:1.1.0'
+
+    instrumentTestCompile files('libs/espresso-1.1.jar',
+            'libs/testrunner-1.1.jar',
+            'libs/testrunner-runtime-1.1.jar')
+
+    instrumentTestCompile 'com.google.guava:guava:14.0.1',
+            'com.squareup.dagger:dagger:1.1.0',
+            'org.hamcrest:hamcrest-core:1.1',
+            'org.hamcrest:hamcrest-integration:1.1',
+            'org.hamcrest:hamcrest-library:1.1'
 }
