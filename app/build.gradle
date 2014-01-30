@@ -1,16 +1,23 @@
 buildscript {
     repositories {
         mavenCentral()
+
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots"
+        }
     }
+
     dependencies {
         classpath 'com.jakewharton.hugo:hugo-plugin:1.0.1'
         classpath 'com.stanfy.spoon:spoon-gradle-plugin:0.9.+'
+        classpath 'com.novoda.gradle:robolectric-plugin:0.0.1-SNAPSHOT'
     }
 }
 
 apply plugin: 'android'
 apply plugin: 'hugo'
 apply plugin: 'spoon'
+apply plugin: 'robolectric'
 
 android {
     compileSdkVersion 19
@@ -44,6 +51,7 @@ android {
         exclude 'LICENSE.txt'
         exclude 'NOTICE'
     }
+
 }
 
 dependencies {
@@ -62,4 +70,7 @@ dependencies {
             'org.hamcrest:hamcrest-core:1.1',
             'org.hamcrest:hamcrest-integration:1.1',
             'org.hamcrest:hamcrest-library:1.1'
+
+    robolectricCompile 'org.robolectric:robolectric:2.0'
+    robolectricCompile group: 'junit', name: 'junit', version: '4.+'
 }
